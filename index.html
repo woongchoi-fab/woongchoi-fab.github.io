@@ -56,10 +56,23 @@ ul.tight li { margin: 3px 0; }
 .papertitle { font-size: 15px; font-weight: 700; color: var(--head); }
 .paper .au b { color: var(--head); }
 .paper .venue { font-style: italic; }
-.tag { display: inline-block; margin-left: 8px; padding: 1px 9px; border-radius: 999px; font-size: 11px; font-style: normal; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; vertical-align: 2px; color: var(--dot); background: color-mix(in srgb, var(--dot) 11%, #fff); }
-.tag.cover { --dot: #d9577a; }
+.tag { display: inline-flex; align-items: center; gap: 6px; margin-left: 8px; padding: 1px 9px 1px 8px; border: 1px solid #e1e5ee; border-radius: 6px; background: #fff; font-size: 11.5px; font-style: normal; font-weight: 700; color: #3a4150; vertical-align: 2px; box-shadow: 0 1px 2px rgba(30, 50, 90, .05); }
+.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--dot); }
+.tag.cover { --dot: #e2557b; }
 .tag.cofirst { --dot: #6b5fd6; }
 .tag.first { --dot: #1772d0; }
+a.ptitle .papertitle { color: var(--head); transition: color .15s ease; }
+a.ptitle:hover .papertitle { color: var(--link); }
+/* patents */
+.patents { border-top: 1px solid var(--line); }
+.pat { display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.pat .ttl { font-weight: 700; color: var(--head); }
+.pat .meta { grid-column: 1; color: var(--muted); font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.pat .state { grid-row: 1 / span 2; grid-column: 2; align-self: start; }
+.status { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; }
+.status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.status.granted { color: #15803d; background: #e8f6ec; }
+.status.pending { color: #6b7385; background: #eef1f6; }
 .note { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
 
 /* news */
@@ -97,6 +110,8 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
   .name { font-size: 28px; }
   .paper { margin: 0 -10px; padding: 12px 10px; }
   .news li { grid-template-columns: 1fr; gap: 0; }
+  .pat { grid-template-columns: 1fr; }
+  .pat .state { grid-row: auto; grid-column: 1; }
   .sec-row { grid-template-columns: 1fr; gap: 10px; }
   .item .head { flex-direction: column; gap: 0; }
 }
@@ -165,56 +180,74 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
 <p class="note">† Equal contribution &nbsp;·&nbsp; highlighted rows are first-author papers &nbsp;·&nbsp; <a href="CV_Woong_Choi.pdf">full list in CV</a></p>
 
 <div class="paper first">
-  <span class="papertitle">Forward Metal-Assisted Chemical Etching for Self-Aligned Gate-Recess Enhancement-Mode β-Ga<sub>2</sub>O<sub>3</sub> Metal–Semiconductor Field-Effect Transistors</span><span class="tag cofirst">Co-first</span><br>
+  <a class="ptitle" href="https://doi.org/10.1149/2162-8777/ae2952"><a class="ptitle" href="https://doi.org/10.1021/acsmaterialslett.6c00520"><span class="papertitle">Forward Metal-Assisted Chemical Etching for Self-Aligned Gate-Recess Enhancement-Mode β-Ga<sub>2</sub>O<sub>3</sub> Metal–Semiconductor Field-Effect Transistors</span></a></a><span class="tag cofirst">Co-first</span><br>
   <span class="au">J. Kim†, <b>W. Choi†</b>, S. Lee, S. Moon, J. Kim</span><br>
   <span class="venue">ACS Materials Letters</span> (accepted)
 </div>
 <div class="paper">
-  <span class="papertitle">Area-Selective UV Laser-Assisted Oxidation for Efficient Hole Injection in WSe<sub>2</sub> FETs and Its Application to Multifunctional Logic Operations</span><br>
+  <a class="ptitle" href="https://doi.org/10.1021/acsaelm.6c00671"><span class="papertitle">Area-Selective UV Laser-Assisted Oxidation for Efficient Hole Injection in WSe<sub>2</sub> FETs and Its Application to Multifunctional Logic Operations</span></a><br>
   <span class="au">Y. Lee, S. Moon, S. Ko, D. Lee, S. Yang, <b>W. Choi</b>, J. Kim, D. Lee</span><br>
   <span class="venue">ACS Applied Electronic Materials</span> (2026)
 </div>
 <div class="paper first">
   <span class="papertitle">Improving the Particle Removal Efficiency of Sn Contaminants on High-NA EUV Masks via Photo-Assisted Wet Cleaning</span><span class="tag cofirst">Co-first</span><br>
   <span class="au"><b>W. Choi†</b>, J. Park†, M. Kim, J. Kim</span><br>
-  <span class="venue">ECS Journal of Solid State Science and Technology</span> 14, 125002 (2025) &nbsp;/&nbsp; <a href="https://doi.org/10.1149/2162-8777/ae2952">paper</a>
+  <span class="venue">ECS Journal of Solid State Science and Technology</span> 14, 125002 (2025)
 </div>
 <div class="paper first">
-  <span class="papertitle">Achieving Face-Selective Ohmic Contact to β-Ga<sub>2</sub>O<sub>3</sub> via Anisotropic Trench Structure</span><span class="tag cofirst">Co-first</span><br>
+  <a class="ptitle" href="https://doi.org/10.1021/acsaelm.5c01474"><span class="papertitle">Achieving Face-Selective Ohmic Contact to β-Ga<sub>2</sub>O<sub>3</sub> via Anisotropic Trench Structure</span></a><span class="tag cofirst">Co-first</span><br>
   <span class="au"><b>W. Choi†</b>, S. Lee†, S. Moon, K. H. Baik, J. Kim</span><br>
-  <span class="venue">ACS Applied Electronic Materials</span> 7, 8618 (2025) &nbsp;/&nbsp; <a href="https://doi.org/10.1021/acsaelm.5c01474">paper</a>
+  <span class="venue">ACS Applied Electronic Materials</span> 7, 8618 (2025)
 </div>
 <div class="paper">
-  <span class="papertitle">Annealing-Free Ohmic Contact of β-Ga<sub>2</sub>O<sub>3</sub> via Nitrogen Plasma Treatment</span><span class="tag cover">Cover</span><br>
+  <a class="ptitle" href="https://doi.org/10.1088/1361-6528/ad27ae"><a class="ptitle" href="https://doi.org/10.1039/d5tc00129c"><span class="papertitle">Annealing-Free Ohmic Contact of β-Ga<sub>2</sub>O<sub>3</sub> via Nitrogen Plasma Treatment</span></a></a><span class="tag cover">Cover</span><br>
   <span class="au">J. Kim, H. W. Kim, <b>W. Choi</b>, J. Kim, D. Lee</span><br>
   <span class="venue">Journal of Materials Chemistry C</span> 13, 10561 (2025)
 </div>
 <div class="paper">
-  <span class="papertitle">WSe<sub>2</sub>/β-Ga<sub>2</sub>O<sub>3</sub> p–n Heterojunction-Based Normally Off Phototransistors for Self-Powered UV-C Detection</span><br>
+  <a class="ptitle" href="https://doi.org/10.1021/acsphotonics.4c02595"><span class="papertitle">WSe<sub>2</sub>/β-Ga<sub>2</sub>O<sub>3</sub> p–n Heterojunction-Based Normally Off Phototransistors for Self-Powered UV-C Detection</span></a><br>
   <span class="au">S. Lee, J. Kim, <b>W. Choi</b>, J. Kim</span><br>
   <span class="venue">ACS Photonics</span> 12, 2112 (2025)
 </div>
 <div class="paper first">
   <span class="papertitle">Wet Cleaning of Ta-Based Extreme Ultraviolet Photomasks at Room Temperature</span><span class="tag cofirst">Co-first</span><br>
   <span class="au">J. Park†, <b>W. Choi†</b>, J. Kim</span><br>
-  <span class="venue">Nanotechnology</span> 35, 205701 (2024) &nbsp;/&nbsp; <a href="https://doi.org/10.1088/1361-6528/ad27ae">paper</a>
+  <span class="venue">Nanotechnology</span> 35, 205701 (2024)
 </div>
 <div class="paper first">
-  <span class="papertitle">Photo-Enhanced Metal-Assisted Chemical Etching of α-Gallium Oxide Grown by Halide Vapor-Phase Epitaxy on a Sapphire Substrate and Its Applications</span><span class="tag first">First</span><br>
+  <a class="ptitle" href="https://doi.org/10.1039/d3ma00424d"><span class="papertitle">Photo-Enhanced Metal-Assisted Chemical Etching of α-Gallium Oxide Grown by Halide Vapor-Phase Epitaxy on a Sapphire Substrate and Its Applications</span></a><span class="tag first">First</span><br>
   <span class="au"><b>W. Choi</b>, D.-W. Jeon, J.-H. Park, D. Lee, S. Lee, K. H. Baik, J. Kim</span><br>
-  <span class="venue">Materials Advances</span> 4, 4520 (2023) &nbsp;/&nbsp; <a href="https://doi.org/10.1039/d3ma00424d">paper</a>
+  <span class="venue">Materials Advances</span> 4, 4520 (2023)
 </div>
 
 <h2>Patents</h2>
-<p class="note">Korean patent applications (titles translated)</p>
-<ol class="list">
-  <li>Wet etching method for alloy thin films and method of forming EUV mask patterns using the same — <span class="detail">KR 10-2026-0048918 (2026), with Samsung Electronics</span></li>
-  <li>Semiconductor device — <span class="detail">KR 10-2026-0039127 (2026)</span></li>
-  <li>Method and apparatus for cleaning photomasks — <span class="detail">KR 10-2025-0098016 (2025), with Samsung Electronics</span></li>
-  <li>Photodetector — <span class="detail">KR 10-2025-0046552 (2025)</span></li>
-  <li>Method for etching gallium oxide using catalytic wet etching — <span class="detail">KR 10-2022-0144719 (2022)</span></li>
-</ol>
-
+<div class="patents">
+  <div class="pat">
+    <span class="ttl">Method for etching alpha-gallium oxide using catalytic wet etching</span>
+    <span class="meta">KR Patent No. 10-2800458 · granted Apr. 21, 2025 · filed Nov. 2, 2022 (Appl. No. 10-2022-0144719)</span>
+    <span class="state"><span class="status granted">Granted</span></span>
+  </div>
+  <div class="pat">
+    <span class="ttl">Method for wet etching alloy thin film and method for forming EUV mask pattern using the same</span>
+    <span class="meta">KR Appl. No. 10-2026-0048918 · filed Mar. 18, 2026 · with Samsung Electronics</span>
+    <span class="state"><span class="status pending">Pending</span></span>
+  </div>
+  <div class="pat">
+    <span class="ttl">Semiconductor device</span>
+    <span class="meta">KR Appl. No. 10-2026-0039127 · filed Mar. 4, 2026</span>
+    <span class="state"><span class="status pending">Pending</span></span>
+  </div>
+  <div class="pat">
+    <span class="ttl">Method and apparatus of cleaning photomask</span>
+    <span class="meta">KR Appl. No. 10-2025-0098016 · filed Jul. 21, 2025 · with Samsung Electronics</span>
+    <span class="state"><span class="status pending">Pending</span></span>
+  </div>
+  <div class="pat">
+    <span class="ttl">Photo detector</span>
+    <span class="meta">KR Appl. No. 10-2025-0046552 · filed Apr. 10, 2025</span>
+    <span class="state"><span class="status pending">Pending</span></span>
+  </div>
+</div>
 <h2>Conference Presentations</h2>
 <ol class="list">
   <li>Forward-MAC etching of β-Ga<sub>2</sub>O<sub>3</sub> and self-aligned recess-gate MESFET — <span class="detail">Nano Korea 2026, Ilsan (Jul. 2026)</span></li>
