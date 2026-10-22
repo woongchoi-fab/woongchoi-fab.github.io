@@ -18,7 +18,6 @@
 :root {
   --bg: #fafbfd; --fg: #2a2f3a; --head: #1f2430; --muted: #666c78; --line: #e3e7ef;
   --link: #1772d0; --hover: #f09228; --violet: #9795f0;
-  --ga: #e3ebf6; --ga-edge: #b6c4d8; --pt: #7d8796; --ti: #d1a85c; --uv: #8f7ff0; --hole: #e88996; --elec: #1772d0;
 }
 * { box-sizing: border-box; }
 html { background: var(--bg); }
@@ -37,11 +36,6 @@ b, strong { font-weight: 700; }
 .btn-links { text-align: center; margin-top: 14px; }
 .btn-links a { display: inline-block; margin: 3px 4px; padding: 5px 16px; border: 1px solid #d6dce8; border-radius: 999px; background: #fff; font-size: 13.5px; transition: all .18s ease; }
 .btn-links a:hover { background: var(--link); border-color: var(--link); color: #fff; }
-
-/* f-MAC panel */
-.stage { margin: 22px 0 0; position: relative; }
-.stage canvas { display: block; width: 100%; height: 210px; border-radius: 14px; background: linear-gradient(135deg, #eef5ff 0%, #f6f3ff 100%); cursor: pointer; }
-.hint { display: block; margin-top: 6px; text-align: right; font: 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #a3abbb; user-select: none; }
 
 /* sections */
 h2 { position: relative; margin: 44px 0 14px; padding-bottom: 10px; font-size: 23px; font-weight: 700; color: var(--head); }
@@ -101,7 +95,6 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
   .intro { grid-template-columns: 1fr; gap: 14px; }
   .intro .photo-wrap { order: -1; width: 58%; margin: 0 auto; }
   .name { font-size: 28px; }
-  .stage canvas { height: 180px; }
   .paper { margin: 0 -10px; padding: 12px 10px; }
   .news li { grid-template-columns: 1fr; gap: 0; }
   .cards { grid-template-columns: 1fr; gap: 10px; }
@@ -130,10 +123,6 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
   <div class="photo-wrap"><img class="photo" src="photo.jpg" alt="profile photo"></div>
 </section>
 
-<div class="stage">
-  <canvas id="fmac" role="img" aria-label="Animated cross-section of forward metal-assisted chemical etching of β-Ga2O3"></canvas>
-  <span class="hint">f-MAC etching · UV-C light, buried Pt gate · the surface recesses only above the gate · click to etch again</span>
-</div>
 
 <h2>Education</h2>
 <div class="rows">
@@ -279,87 +268,5 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
 </footer>
 </main>
 
-<script>
-(() => {
-  const cv = document.getElementById("fmac");
-  const ctx = cv.getContext("2d");
-  const C = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const ETCH_SEC = 7;
-  let W, H, t0 = performance.now(), photons = [], carriers = [];
-
-  function size() {
-    const dpr = window.devicePixelRatio || 1;
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = W * dpr; cv.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  addEventListener("resize", size); size();
-  cv.addEventListener("click", () => { t0 = performance.now(); carriers = []; if (reduce) draw(performance.now()); });
-
-  function draw(now) {
-    const top = H * 0.42, bot = H - 18, cx = W / 2;
-    const gw = Math.min(150, W * 0.22), gh = 11, gateY = top + (bot - top) * 0.62;
-    const padW = Math.min(120, W * 0.17), gap = Math.max(26, W * 0.05);
-    const maxDepth = (bot - top) * 0.45;
-    const p = reduce ? 0.85 : Math.min(1, (now - t0) / 1000 / ETCH_SEC);
-    const depth = maxDepth * (1 - Math.pow(1 - p, 2));
-    const x0 = cx - gw / 2, x1 = cx + gw / 2;
-    ctx.clearRect(0, 0, W, H);
-
-    if (!reduce && Math.random() < 0.6) photons.push({ x: Math.random() * W, y: -10, v: 2 + Math.random() * 1.6 });
-    ctx.strokeStyle = C("--uv"); ctx.lineWidth = 1.4;
-    photons = photons.filter(ph => {
-      ph.y += ph.v;
-      const over = ph.x > x0 && ph.x < x1;
-      const surf = over ? top + depth : top;
-      if (ph.y > surf) { if (over && p < 1 && Math.random() < .55) carriers.push({ x: ph.x, y: surf + 4, life: 1 }); return false; }
-      ctx.globalAlpha = .5;
-      ctx.beginPath(); ctx.moveTo(ph.x, ph.y - 9);
-      for (let k = 0; k < 4; k++) ctx.lineTo(ph.x + (k % 2 ? 2.5 : -2.5), ph.y - 9 + (k + 1) * 2.4);
-      ctx.stroke();
-      return true;
-    });
-    ctx.globalAlpha = 1;
-
-    const r = Math.min(10, depth);
-    ctx.fillStyle = C("--ga"); ctx.strokeStyle = C("--ga-edge"); ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    ctx.moveTo(0, top); ctx.lineTo(x0, top);
-    ctx.lineTo(x0, top + depth - r); ctx.quadraticCurveTo(x0, top + depth, x0 + r, top + depth);
-    ctx.lineTo(x1 - r, top + depth); ctx.quadraticCurveTo(x1, top + depth, x1, top + depth - r);
-    ctx.lineTo(x1, top); ctx.lineTo(W, top); ctx.lineTo(W, bot); ctx.lineTo(0, bot); ctx.closePath();
-    ctx.fill(); ctx.stroke();
-
-    ctx.fillStyle = C("--pt"); ctx.fillRect(x0, gateY, gw, gh);
-    ctx.fillStyle = C("--ti");
-    ctx.fillRect(x0 - gap - padW, top - 9, padW, 9);
-    ctx.fillRect(x1 + gap, top - 9, padW, 9);
-
-    carriers = carriers.filter(c => {
-      c.life -= .02;
-      const hy = c.y - (1 - c.life) * 6, ey = c.y + (1 - c.life) * (gateY - c.y);
-      ctx.globalAlpha = Math.max(0, c.life);
-      ctx.fillStyle = C("--hole"); ctx.beginPath(); ctx.arc(c.x - 3, hy, 2.6, 0, 7); ctx.fill();
-      ctx.fillStyle = C("--elec"); ctx.beginPath(); ctx.arc(c.x + 3, ey, 2.6, 0, 7); ctx.fill();
-      return c.life > 0;
-    });
-    ctx.globalAlpha = 1;
-
-    ctx.fillStyle = "#7d8696"; ctx.font = "12px Lato, Verdana, sans-serif"; ctx.textAlign = "center";
-    ctx.fillText("Ti", x0 - gap - padW / 2, top - 15);
-    ctx.fillText("Ti", x1 + gap + padW / 2, top - 15);
-    ctx.fillText("Pt (buried gate)", cx, gateY + gh + 15);
-    ctx.fillText("recess " + Math.round(p * 100) + "%", cx, top - 15);
-    ctx.textAlign = "left"; ctx.fillText("β-Ga₂O₃", 12, bot - 8);
-    ctx.textAlign = "right";
-    ctx.fillStyle = C("--hole"); ctx.fillText("● h⁺", W - 52, 18);
-    ctx.fillStyle = C("--elec"); ctx.fillText("● e⁻", W - 12, 18);
-
-    if (!reduce) requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
-})();
-</script>
 </body>
 </html>
