@@ -56,10 +56,10 @@ ul.tight li { margin: 3px 0; }
 .papertitle { font-size: 15px; font-weight: 700; color: var(--head); }
 .paper .au b { color: var(--head); }
 .paper .venue { font-style: italic; }
-.tag { display: inline-block; margin-left: 6px; padding: 0 9px; border-radius: 999px; font-size: 11.5px; font-style: normal; font-weight: 700; vertical-align: 1px; color: #fff; }
-.tag.cover { background: linear-gradient(135deg, #f7b7b7 0%, #e88996 100%); }
-.tag.cofirst { background: linear-gradient(135deg, #9795f0 0%, #525099 100%); }
-.tag.first { background: linear-gradient(135deg, #BCD4E6 0%, #6A8EAE 100%); }
+.tag { display: inline-block; margin-left: 8px; padding: 1px 9px; border-radius: 999px; font-size: 11px; font-style: normal; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; vertical-align: 2px; color: var(--dot); background: color-mix(in srgb, var(--dot) 11%, #fff); }
+.tag.cover { --dot: #d9577a; }
+.tag.cofirst { --dot: #6b5fd6; }
+.tag.first { --dot: #1772d0; }
 .note { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
 
 /* news */
@@ -73,18 +73,18 @@ details summary::-webkit-details-marker { display: none; }
 details summary::before { content: "+ "; }
 details[open] summary::before { content: "− "; }
 
-/* cards (skills, honors) */
-.cards { display: grid; grid-template-columns: 180px 1fr; gap: 18px 24px; align-items: center; }
-.info-card { padding: 24px 18px; border-radius: 12px; text-align: center; box-shadow: 0 3px 12px rgba(30, 50, 90, .10); transition: all .3s cubic-bezier(.4, 0, .2, 1); }
-.info-card:hover { transform: translateY(-4px); box-shadow: 0 8px 22px rgba(30, 50, 90, .14); }
-.info-card h3 { margin: 0; color: #fff; font-size: 17px; font-weight: 700; }
-.gradient-purple { background: linear-gradient(135deg, #9795f0 0%, #525099 100%); }
-.gradient-pink { background: linear-gradient(135deg, #f7b7b7 0%, #e88996 100%); }
-.gradient-blue { background: linear-gradient(135deg, #BCD4E6 0%, #6A8EAE 100%); }
-.gradient-teal { background: linear-gradient(135deg, #a8dccf 0%, #4f9a8c 100%); }
+/* labeled rows (experience, skills) */
+.sec { border-top: 1px solid var(--line); }
+.sec-row { display: grid; grid-template-columns: 170px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.label { display: inline-flex; align-items: center; gap: 9px; margin-top: 1px; padding: 3px 12px 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--dot); background: color-mix(in srgb, var(--dot) 10%, #fff); white-space: nowrap; }
+.label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--dot); box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot) 22%, transparent); }
+.c-violet { --dot: #6b5fd6; } .c-rose { --dot: #d9577a; } .c-blue { --dot: #1772d0; } .c-teal { --dot: #22917f; } .c-slate { --dot: #5b6b82; }
+.item + .item { margin-top: 12px; }
+.item .head { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+.item .head strong { color: var(--head); }
+.item .date { flex: none; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chips span { padding: 2px 11px; border: 1px solid #d6dce8; border-radius: 999px; background: #fff; font-size: 13px; }
-
+.chips span { padding: 2px 11px; border: 1px solid #dfe4ee; border-radius: 8px; background: #fff; font-size: 13px; color: #3a4150; }
 ol.list { margin: 0; padding-left: 22px; }
 ol.list li { margin: 6px 0; }
 
@@ -97,8 +97,8 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
   .name { font-size: 28px; }
   .paper { margin: 0 -10px; padding: 12px 10px; }
   .news li { grid-template-columns: 1fr; gap: 0; }
-  .cards { grid-template-columns: 1fr; gap: 10px; }
-  .info-card { padding: 14px 18px; }
+  .sec-row { grid-template-columns: 1fr; gap: 10px; }
+  .item .head { flex-direction: column; gap: 0; }
 }
 </style>
 </head>
@@ -232,36 +232,51 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
 </ol>
 
 <h2>Experience</h2>
-<div class="cards">
-  <div class="info-card gradient-purple"><h3>Research<br>Projects</h3></div>
-  <div>
-    <strong>Chemical etch-rate characterization of thin-film materials for High-NA EUV masks</strong> &nbsp;<em class="detail">Dec. 2022 – Present</em><br>
-    <span class="detail">Samsung Electronics, Semiconductor R&amp;D Center / Mask Development Team</span><br><br>
-    <strong>Gallium oxide UV sensors for extreme environments</strong> &nbsp;<em class="detail">Apr. 2022 – Present</em><br>
-    <span class="detail">Korea Evaluation Institute of Industrial Technology (KEIT)</span>
+<div class="sec">
+  <div class="sec-row">
+    <div><span class="label c-violet">Projects</span></div>
+    <div>
+      <div class="item"><div class="head"><strong>Chemical etch-rate characterization of thin-film materials for High-NA EUV masks</strong><span class="date">Dec. 2022 – Present</span></div>
+        <span class="detail">Samsung Electronics, Semiconductor R&amp;D Center / Mask Development Team</span></div>
+      <div class="item"><div class="head"><strong>Gallium oxide UV sensors for extreme environments</strong><span class="date">Apr. 2022 – Present</span></div>
+        <span class="detail">Korea Evaluation Institute of Industrial Technology (KEIT)</span></div>
+    </div>
   </div>
-  <div class="info-card gradient-pink"><h3>Honors &amp;<br>Awards</h3></div>
-  <div>
-    <strong>Best Student Presentation Award</strong>, 6th Korea Gallium Oxide Technology Workshop, Yeosu (2023)<br>
-    <strong>Journal cover</strong>, <i>Journal of Materials Chemistry C</i> 13 (2025)
+  <div class="sec-row">
+    <div><span class="label c-rose">Honors</span></div>
+    <div>
+      <div class="item"><div class="head"><strong>Journal cover</strong><span class="date">2025</span></div>
+        <span class="detail"><i>Journal of Materials Chemistry C</i> 13 — Annealing-free Ohmic contact of β-Ga<sub>2</sub>O<sub>3</sub></span></div>
+      <div class="item"><div class="head"><strong>Best Student Presentation Award</strong><span class="date">2023</span></div>
+        <span class="detail">6th Korea Gallium Oxide Technology Workshop, Yeosu</span></div>
+    </div>
   </div>
-  <div class="info-card gradient-blue"><h3>Teaching</h3></div>
-  <div>
-    Teaching assistant, <strong>Semiconductor Materials and Processes</strong> <span class="detail">(Spring 2026)</span><br>
-    Teaching assistant, <strong>Chemical and Biological Process Laboratory</strong> <span class="detail">(Spring 2022)</span>
+  <div class="sec-row">
+    <div><span class="label c-blue">Teaching</span></div>
+    <div>
+      <div class="item"><div class="head"><strong>Semiconductor Materials and Processes</strong><span class="date">Spring 2026</span></div>
+        <span class="detail">Teaching assistant</span></div>
+      <div class="item"><div class="head"><strong>Chemical and Biological Process Laboratory</strong><span class="date">Spring 2022</span></div>
+        <span class="detail">Teaching assistant</span></div>
+    </div>
   </div>
 </div>
 
 <h2>Technical Skills</h2>
-<div class="cards">
-  <div class="info-card gradient-teal"><h3>Fabrication</h3></div>
-  <div class="chips"><span>Photolithography</span><span>Maskless lithography</span><span>E-beam lithography</span><span>RIE / ICP-RIE</span><span>Photo-enhanced MAC etching</span><span>Wet chemical etching</span><span>E-beam evaporation</span><span>RTA / vacuum furnace</span><span>UV/O<sub>3</sub> oxidation of 2D semiconductors</span><span>Dry / wet transfer of 2D materials</span><span>SPM, SC-1, UV/O<sub>3</sub>, downstream plasma cleaning</span></div>
-  <div class="info-card gradient-purple"><h3>Characterization</h3></div>
-  <div class="chips"><span>I–V / C–V</span><span>AFM</span><span>SEM</span><span>EDS</span><span>EBSD</span><span>Photoluminescence</span><span>Raman spectroscopy</span></div>
-  <div class="info-card gradient-blue"><h3>Software</h3></div>
-  <div class="chips"><span>SRIM</span><span>L-Edit</span><span>AutoCAD</span></div>
+<div class="sec">
+  <div class="sec-row">
+    <div><span class="label c-teal">Fabrication</span></div>
+    <div class="chips"><span>Photolithography</span><span>Maskless lithography</span><span>E-beam lithography</span><span>RIE / ICP-RIE</span><span>Photo-enhanced MAC etching</span><span>Wet chemical etching</span><span>E-beam evaporation</span><span>RTA / vacuum furnace</span><span>UV/O<sub>3</sub> oxidation of 2D semiconductors</span><span>Dry / wet transfer of 2D materials</span><span>SPM, SC-1, UV/O<sub>3</sub>, downstream plasma cleaning</span></div>
+  </div>
+  <div class="sec-row">
+    <div><span class="label c-violet">Analysis</span></div>
+    <div class="chips"><span>I–V / C–V</span><span>AFM</span><span>SEM</span><span>EDS</span><span>EBSD</span><span>Photoluminescence</span><span>Raman spectroscopy</span></div>
+  </div>
+  <div class="sec-row">
+    <div><span class="label c-slate">Software</span></div>
+    <div class="chips"><span>SRIM</span><span>L-Edit</span><span>AutoCAD</span></div>
+  </div>
 </div>
-
 <footer>
   <span>Woong Choi · Seoul National University · <a href="mailto:52_hater@snu.ac.kr">52_hater@snu.ac.kr</a></span>
   <span>Last updated Oct. 2026 · layout after <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a></span>
