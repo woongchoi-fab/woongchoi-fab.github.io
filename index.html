@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Woong Choi</title>
+<meta name="author" content="Woong Choi">
+<meta name="description" content="Woong Choi — Ph.D. student in Chemical and Biological Engineering at Seoul National University (CPCL). Damage-free etching and cleaning processes for β-Ga2O3 devices and High-NA EUV photomasks.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://woongchoi-fab.github.io/">
+<meta property="og:title" content="Woong Choi">
+<meta property="og:description" content="Ph.D. student, Seoul National University (CPCL). Damage-free etching and cleaning for β-Ga2O3 devices and High-NA EUV photomasks.">
+<meta property="og:image" content="https://woongchoi-fab.github.io/photo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafbfd; --fg: #2a2f3a; --head: #1f2430; --muted: #666c78; --line: #e3e7ef;
+  --link: #1772d0; --hover: #f09228; --violet: #9795f0;
+  --ga: #e3ebf6; --ga-edge: #b6c4d8; --pt: #7d8796; --ti: #d1a85c; --uv: #8f7ff0; --hole: #e88996; --elec: #1772d0;
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14.5px/1.65 "Lato", Verdana, Helvetica, sans-serif; }
+main { max-width: 820px; margin: 0 auto; padding: 24px 20px 56px; overflow-wrap: anywhere; }
+a { color: var(--link); text-decoration: none; transition: color .15s ease; }
+a:hover, a:focus { color: var(--hover); }
+b, strong { font-weight: 700; }
+
+/* intro */
+.intro { display: grid; grid-template-columns: 1fr 230px; gap: 28px; align-items: center; padding: 20px 4px 4px; }
+.name { margin: 0 0 4px; text-align: center; font-size: 32px; font-weight: 700; letter-spacing: -0.5px; color: #1a1f2b; }
+.role { margin: 0 0 14px; text-align: center; color: var(--muted); }
+.intro p { margin: 0 0 10px; }
+.photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 35%; border-radius: 50%; box-shadow: 0 6px 24px rgba(30, 50, 90, .16); }
+.btn-links { text-align: center; margin-top: 14px; }
+.btn-links a { display: inline-block; margin: 3px 4px; padding: 5px 16px; border: 1px solid #d6dce8; border-radius: 999px; background: #fff; font-size: 13.5px; transition: all .18s ease; }
+.btn-links a:hover { background: var(--link); border-color: var(--link); color: #fff; }
+
+/* f-MAC panel */
+.stage { margin: 22px 0 0; position: relative; }
+.stage canvas { display: block; width: 100%; height: 210px; border-radius: 14px; background: linear-gradient(135deg, #eef5ff 0%, #f6f3ff 100%); cursor: pointer; }
+.hint { display: block; margin-top: 6px; text-align: right; font: 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #a3abbb; user-select: none; }
+
+/* sections */
+h2 { position: relative; margin: 44px 0 14px; padding-bottom: 10px; font-size: 23px; font-weight: 700; color: var(--head); }
+h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 38px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--link), var(--violet)); }
+.lede { margin: 0 0 12px; }
+.detail { color: var(--muted); }
+ul.tight { margin: 6px 0 0; padding-left: 20px; }
+ul.tight li { margin: 3px 0; }
+
+/* education / projects rows */
+.rows { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.rows p { margin: 0; }
+.rows em { color: var(--muted); }
+
+/* papers */
+.paper { padding: 14px 18px; margin: 0 -18px; border-radius: 14px; }
+.paper.first { background: linear-gradient(135deg, #eef5ff 0%, #f6f3ff 100%); }
+.papertitle { font-size: 15px; font-weight: 700; color: var(--head); }
+.paper .au b { color: var(--head); }
+.paper .venue { font-style: italic; }
+.tag { display: inline-block; margin-left: 6px; padding: 0 9px; border-radius: 999px; font-size: 11.5px; font-style: normal; font-weight: 700; vertical-align: 1px; color: #fff; }
+.tag.cover { background: linear-gradient(135deg, #f7b7b7 0%, #e88996 100%); }
+.tag.cofirst { background: linear-gradient(135deg, #9795f0 0%, #525099 100%); }
+.tag.first { background: linear-gradient(135deg, #BCD4E6 0%, #6A8EAE 100%); }
+.note { font-size: 13px; color: var(--muted); margin: 0 0 6px; }
+
+/* news */
+.news { list-style: none; margin: 0; padding: 0; }
+.news li { display: grid; grid-template-columns: 92px 1fr; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.news li:last-child { border-bottom: 0; }
+.news .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+.news .what b { color: var(--head); }
+details summary { cursor: pointer; color: var(--link); margin: 10px 0 4px; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: "+ "; }
+details[open] summary::before { content: "− "; }
+
+/* cards (skills, honors) */
+.cards { display: grid; grid-template-columns: 180px 1fr; gap: 18px 24px; align-items: center; }
+.info-card { padding: 24px 18px; border-radius: 12px; text-align: center; box-shadow: 0 3px 12px rgba(30, 50, 90, .10); transition: all .3s cubic-bezier(.4, 0, .2, 1); }
+.info-card:hover { transform: translateY(-4px); box-shadow: 0 8px 22px rgba(30, 50, 90, .14); }
+.info-card h3 { margin: 0; color: #fff; font-size: 17px; font-weight: 700; }
+.gradient-purple { background: linear-gradient(135deg, #9795f0 0%, #525099 100%); }
+.gradient-pink { background: linear-gradient(135deg, #f7b7b7 0%, #e88996 100%); }
+.gradient-blue { background: linear-gradient(135deg, #BCD4E6 0%, #6A8EAE 100%); }
+.gradient-teal { background: linear-gradient(135deg, #a8dccf 0%, #4f9a8c 100%); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { padding: 2px 11px; border: 1px solid #d6dce8; border-radius: 999px; background: #fff; font-size: 13px; }
+
+ol.list { margin: 0; padding-left: 22px; }
+ol.list li { margin: 6px 0; }
+
+footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #8a93a5; }
+
+@media (max-width: 640px) {
+  main { padding: 12px 16px 48px; }
+  .intro { grid-template-columns: 1fr; gap: 14px; }
+  .intro .photo-wrap { order: -1; width: 58%; margin: 0 auto; }
+  .name { font-size: 28px; }
+  .stage canvas { height: 180px; }
+  .paper { margin: 0 -10px; padding: 12px 10px; }
+  .news li { grid-template-columns: 1fr; gap: 0; }
+  .cards { grid-template-columns: 1fr; gap: 10px; }
+  .info-card { padding: 14px 18px; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<section class="intro">
+  <div>
+    <p class="name">Woong Choi</p>
+    <p class="role">Ph.D. Student · Chemical and Biological Engineering · Seoul National University</p>
+    <p>I am a Ph.D. student in the <a href="https://www.cpclsnu.com/">Compound Semiconductor Process &amp; Characterization Laboratory (CPCL)</a> at Seoul National University, advised by Prof. Jihyun Kim.
+    I received my B.S. in Chemical and Biological Engineering from Korea University.</p>
+    <p>My research develops damage-free, plasma-free processes for semiconductor fabrication: catalyst- and light-driven wet etching of ultrawide-bandgap β-Ga<sub>2</sub>O<sub>3</sub> for transistors and photodetectors, and photo-assisted wet cleaning of High-NA EUV photomasks.</p>
+    <p class="btn-links">
+      <a href="mailto:52_hater@snu.ac.kr">Email</a>
+      <a href="CV_Woong_Choi.pdf">CV</a>
+      <a href="https://scholar.google.com/citations?user=3Df4Lg4AAAAJ&amp;hl=en">Scholar</a>
+      <a href="https://github.com/woongchoi-fab">GitHub</a>
+      <a href="https://www.linkedin.com/in/woong-choi-583726243">LinkedIn</a>
+    </p>
+  </div>
+  <div class="photo-wrap"><img class="photo" src="photo.jpg" alt="profile photo"></div>
+</section>
+
+<div class="stage">
+  <canvas id="fmac" role="img" aria-label="Animated cross-section of forward metal-assisted chemical etching of β-Ga2O3"></canvas>
+  <span class="hint">f-MAC etching · UV-C light, buried Pt gate · the surface recesses only above the gate · click to etch again</span>
+</div>
+
+<h2>Education</h2>
+<div class="rows">
+  <p><strong>Seoul National University</strong> &nbsp;·&nbsp; <em>Mar. 2022 – Feb. 2028 (expected)</em><br>
+    <span class="detail">Ph.D., Chemical and Biological Engineering &nbsp;/&nbsp; Advisor: Prof. Jihyun Kim</span></p>
+  <p><strong>Korea University</strong> &nbsp;·&nbsp; <em>Mar. 2016 – Feb. 2022</em><br>
+    <span class="detail">B.S., Chemical and Biological Engineering</span></p>
+</div>
+
+<h2>Research Interests</h2>
+<p class="lede">Conventional dry etching and high-temperature cleaning damage the very surfaces they are meant to shape. I replace them with catalyst- and light-driven chemistry at room temperature, and carry the resulting processes into working devices.</p>
+<ul class="tight">
+  <li>Metal-assisted chemical etching (MAC) of Ga<sub>2</sub>O<sub>3</sub> — photo-enhanced, inverse, and forward MAC</li>
+  <li>β-Ga<sub>2</sub>O<sub>3</sub> device processing — self-aligned recess-gate MESFETs, Ohmic contacts, UV-C photodetectors</li>
+  <li>Wet and photo-assisted cleaning of Ta-based and High-NA EUV photomasks</li>
+  <li>Vapor-phase HF catalytic etching of SiO<sub>2</sub> and quartz</li>
+</ul>
+
+<h2>Recent News</h2>
+<ul class="news">
+  <li><span class="when">Jul. 2026</span><span class="what"><b>Poster at NANO KOREA 2026</b>, Ilsan — <i>Achieving E-Mode β-Ga<sub>2</sub>O<sub>3</sub> MESFETs with Self-Aligned Gate-Recess Structure by Forward Metal-Assisted Chemical Etching</i></span></li>
+  <li><span class="when">Apr. 2026</span><span class="what"><b>Presented at the 2026 MRS Spring Meeting &amp; Exhibit</b>, Honolulu — forward metal-assisted chemical etching for self-aligned recess-gate β-Ga<sub>2</sub>O<sub>3</sub> MESFETs</span></li>
+  <li><span class="when">Jan. 2026</span><span class="what"><b>Presented at the 33rd Korean Conference on Semiconductors</b>, Jeongseon — photo-assisted wet cleaning of Sn particles on High-NA EUV masks</span></li>
+  <li><span class="when">Sep. 2025</span><span class="what"><b>Presented at SPIE Photomask Technology + EUV Lithography 2025</b>, Monterey</span></li>
+  <li><span class="when">May 2025</span><span class="what"><b>Journal cover</b> — <i>Annealing-Free Ohmic Contact of β-Ga<sub>2</sub>O<sub>3</sub> via Nitrogen Plasma Treatment</i> was selected for the cover of <i>Journal of Materials Chemistry C</i></span></li>
+</ul>
+<details>
+  <summary>Earlier news</summary>
+  <ul class="news">
+    <li><span class="when">Oct. 2024</span><span class="what"><b>Oral presentation at ECS PRiME 2024</b>, Honolulu</span></li>
+    <li><span class="when">Apr. 2024</span><span class="what"><b>Oral presentation at the KIChE Spring Meeting 2024</b>, Jeju</span></li>
+    <li><span class="when">Nov. 2023</span><span class="what"><b>Presented at ICAE 2023</b>, the 7th International Conference on Advanced Electromaterials, Jeju</span></li>
+    <li><span class="when">Sep. 2023</span><span class="what"><b>Best Student Presentation Award</b>, 6th Korea Gallium Oxide Technology Workshop, Yeosu</span></li>
+    <li><span class="when">May 2023</span><span class="what"><b>Oral presentation at the 243rd ECS Meeting</b>, Boston</span></li>
+    <li><span class="when">Feb. 2023</span><span class="what"><b>Poster at the 30th Korean Conference on Semiconductors</b>, High1 Resort</span></li>
+  </ul>
+</details>
+
+<h2>Publications</h2>
+<p class="note">† Equal contribution &nbsp;·&nbsp; highlighted rows are first-author papers &nbsp;·&nbsp; <a href="CV_Woong_Choi.pdf">full list in CV</a></p>
+
+<div class="paper first">
+  <span class="papertitle">Forward Metal-Assisted Chemical Etching for Self-Aligned Gate-Recess Enhancement-Mode β-Ga<sub>2</sub>O<sub>3</sub> Metal–Semiconductor Field-Effect Transistors</span><span class="tag cofirst">Co-first</span><br>
+  <span class="au">J. Kim†, <b>W. Choi†</b>, S. Lee, S. Moon, J. Kim</span><br>
+  <span class="venue">ACS Materials Letters</span> (accepted)
+</div>
+<div class="paper">
+  <span class="papertitle">Area-Selective UV Laser-Assisted Oxidation for Efficient Hole Injection in WSe<sub>2</sub> FETs and Its Application to Multifunctional Logic Operations</span><br>
+  <span class="au">Y. Lee, S. Moon, S. Ko, D. Lee, S. Yang, <b>W. Choi</b>, J. Kim, D. Lee</span><br>
+  <span class="venue">ACS Applied Electronic Materials</span> (2026)
+</div>
+<div class="paper first">
+  <span class="papertitle">Improving the Particle Removal Efficiency of Sn Contaminants on High-NA EUV Masks via Photo-Assisted Wet Cleaning</span><span class="tag cofirst">Co-first</span><br>
+  <span class="au"><b>W. Choi†</b>, J. Park†, M. Kim, J. Kim</span><br>
+  <span class="venue">ECS Journal of Solid State Science and Technology</span> 14, 125002 (2025) &nbsp;/&nbsp; <a href="https://doi.org/10.1149/2162-8777/ae2952">paper</a>
+</div>
+<div class="paper first">
+  <span class="papertitle">Achieving Face-Selective Ohmic Contact to β-Ga<sub>2</sub>O<sub>3</sub> via Anisotropic Trench Structure</span><span class="tag cofirst">Co-first</span><br>
+  <span class="au"><b>W. Choi†</b>, S. Lee†, S. Moon, K. H. Baik, J. Kim</span><br>
+  <span class="venue">ACS Applied Electronic Materials</span> 7, 8618 (2025) &nbsp;/&nbsp; <a href="https://doi.org/10.1021/acsaelm.5c01474">paper</a>
+</div>
+<div class="paper">
+  <span class="papertitle">Annealing-Free Ohmic Contact of β-Ga<sub>2</sub>O<sub>3</sub> via Nitrogen Plasma Treatment</span><span class="tag cover">Cover</span><br>
+  <span class="au">J. Kim, H. W. Kim, <b>W. Choi</b>, J. Kim, D. Lee</span><br>
+  <span class="venue">Journal of Materials Chemistry C</span> 13, 10561 (2025)
+</div>
+<div class="paper">
+  <span class="papertitle">WSe<sub>2</sub>/β-Ga<sub>2</sub>O<sub>3</sub> p–n Heterojunction-Based Normally Off Phototransistors for Self-Powered UV-C Detection</span><br>
+  <span class="au">S. Lee, J. Kim, <b>W. Choi</b>, J. Kim</span><br>
+  <span class="venue">ACS Photonics</span> 12, 2112 (2025)
+</div>
+<div class="paper first">
+  <span class="papertitle">Wet Cleaning of Ta-Based Extreme Ultraviolet Photomasks at Room Temperature</span><span class="tag cofirst">Co-first</span><br>
+  <span class="au">J. Park†, <b>W. Choi†</b>, J. Kim</span><br>
+  <span class="venue">Nanotechnology</span> 35, 205701 (2024) &nbsp;/&nbsp; <a href="https://doi.org/10.1088/1361-6528/ad27ae">paper</a>
+</div>
+<div class="paper first">
+  <span class="papertitle">Photo-Enhanced Metal-Assisted Chemical Etching of α-Gallium Oxide Grown by Halide Vapor-Phase Epitaxy on a Sapphire Substrate and Its Applications</span><span class="tag first">First</span><br>
+  <span class="au"><b>W. Choi</b>, D.-W. Jeon, J.-H. Park, D. Lee, S. Lee, K. H. Baik, J. Kim</span><br>
+  <span class="venue">Materials Advances</span> 4, 4520 (2023) &nbsp;/&nbsp; <a href="https://doi.org/10.1039/d3ma00424d">paper</a>
+</div>
+
+<h2>Patents</h2>
+<p class="note">Korean patent applications (titles translated)</p>
+<ol class="list">
+  <li>Wet etching method for alloy thin films and method of forming EUV mask patterns using the same — <span class="detail">KR 10-2026-0048918 (2026), with Samsung Electronics</span></li>
+  <li>Semiconductor device — <span class="detail">KR 10-2026-0039127 (2026)</span></li>
+  <li>Method and apparatus for cleaning photomasks — <span class="detail">KR 10-2025-0098016 (2025), with Samsung Electronics</span></li>
+  <li>Photodetector — <span class="detail">KR 10-2025-0046552 (2025)</span></li>
+  <li>Method for etching gallium oxide using catalytic wet etching — <span class="detail">KR 10-2022-0144719 (2022)</span></li>
+</ol>
+
+<h2>Conference Presentations</h2>
+<ol class="list">
+  <li>Forward-MAC etching of β-Ga<sub>2</sub>O<sub>3</sub> and self-aligned recess-gate MESFET — <span class="detail">Nano Korea 2026, Ilsan (Jul. 2026)</span></li>
+  <li>Forward Metal-Assisted Chemical Etching for Self-Aligned Recess-Gate β-Ga<sub>2</sub>O<sub>3</sub> MESFETs — <span class="detail">2026 MRS Spring Meeting, Honolulu (Apr. 2026)</span></li>
+  <li>Improving the removal efficiency of Sn particles on High-NA EUV masks via photo-assisted wet cleaning — <span class="detail">33rd Korean Conference on Semiconductors, Jeongseon (Jan. 2026)</span></li>
+  <li>Photo-assisted wet cleaning of tin contaminants on High-NA EUV masks — <span class="detail">SPIE Photomask Technology + EUV Lithography, Monterey (Sep. 2025)</span></li>
+  <li>Applying plane contact in β-Ga<sub>2</sub>O<sub>3</sub> via photo-enhanced metal-assisted chemical etching to improve Ohmic contact — <span class="detail">Korea–Japan Symposium on Materials and Interfaces, Seoul (Nov. 2024)</span></li>
+  <li>Plane-selective metal-assisted chemical etching for good Ohmic contact to β-Ga<sub>2</sub>O<sub>3</sub> — <span class="detail">ECS PRiME 2024, Honolulu (Oct. 2024)</span></li>
+  <li>Anti-ambipolar transistor via β-Ga<sub>2</sub>O<sub>3</sub>/WSe<sub>2</sub> mixed-dimensional heterostructure — <span class="detail">KIChE Spring Meeting 2024, Jeju (Apr. 2024)</span></li>
+  <li>β-Ga<sub>2</sub>O<sub>3</sub>/WSe<sub>2</sub> anti-ambipolar transistor — <span class="detail">ICAE 2023, Jeju (Nov. 2023)</span></li>
+  <li>Photo-enhanced inverse metal-assisted chemical etching of alpha-phase gallium oxide — <span class="detail">6th Korea Gallium Oxide Technology Workshop, Yeosu (Sep. 2023)</span></li>
+  <li>Photo-enhanced inverse metal-assisted chemical etching of α-Ga<sub>2</sub>O<sub>3</sub> grown on Al<sub>2</sub>O<sub>3</sub> — <span class="detail">243rd ECS Meeting, Boston (May 2023)</span></li>
+  <li>Inverse metal-assisted chemical etching of α-phase gallium oxide — <span class="detail">30th Korean Conference on Semiconductors, Jeongseon (Feb. 2023)</span></li>
+  <li>Inverse metal-assisted chemical etching of β-Ga<sub>2</sub>O<sub>3</sub> using quantitative analysis — <span class="detail">5th Korea Gallium Oxide Technology Workshop, Daejeon (Aug. 2022)</span></li>
+</ol>
+
+<h2>Experience</h2>
+<div class="cards">
+  <div class="info-card gradient-purple"><h3>Research<br>Projects</h3></div>
+  <div>
+    <strong>Chemical etch-rate characterization of thin-film materials for High-NA EUV masks</strong> &nbsp;<em class="detail">Dec. 2022 – Present</em><br>
+    <span class="detail">Samsung Electronics, Semiconductor R&amp;D Center / Mask Development Team</span><br><br>
+    <strong>Gallium oxide UV sensors for extreme environments</strong> &nbsp;<em class="detail">Apr. 2022 – Present</em><br>
+    <span class="detail">Korea Evaluation Institute of Industrial Technology (KEIT)</span>
+  </div>
+  <div class="info-card gradient-pink"><h3>Honors &amp;<br>Awards</h3></div>
+  <div>
+    <strong>Best Student Presentation Award</strong>, 6th Korea Gallium Oxide Technology Workshop, Yeosu (2023)<br>
+    <strong>Journal cover</strong>, <i>Journal of Materials Chemistry C</i> 13 (2025)
+  </div>
+  <div class="info-card gradient-blue"><h3>Teaching</h3></div>
+  <div>
+    Teaching assistant, <strong>Semiconductor Materials and Processes</strong> <span class="detail">(Spring 2026)</span><br>
+    Teaching assistant, <strong>Chemical and Biological Process Laboratory</strong> <span class="detail">(Spring 2022)</span>
+  </div>
+</div>
+
+<h2>Technical Skills</h2>
+<div class="cards">
+  <div class="info-card gradient-teal"><h3>Fabrication</h3></div>
+  <div class="chips"><span>Photolithography</span><span>Maskless lithography</span><span>E-beam lithography</span><span>RIE / ICP-RIE</span><span>Photo-enhanced MAC etching</span><span>Wet chemical etching</span><span>E-beam evaporation</span><span>RTA / vacuum furnace</span><span>UV/O<sub>3</sub> oxidation of 2D semiconductors</span><span>Dry / wet transfer of 2D materials</span><span>SPM, SC-1, UV/O<sub>3</sub>, downstream plasma cleaning</span></div>
+  <div class="info-card gradient-purple"><h3>Characterization</h3></div>
+  <div class="chips"><span>I–V / C–V</span><span>AFM</span><span>SEM</span><span>EDS</span><span>EBSD</span><span>Photoluminescence</span><span>Raman spectroscopy</span></div>
+  <div class="info-card gradient-blue"><h3>Software</h3></div>
+  <div class="chips"><span>SRIM</span><span>L-Edit</span><span>AutoCAD</span></div>
+</div>
+
+<footer>
+  <span>Woong Choi · Seoul National University · <a href="mailto:52_hater@snu.ac.kr">52_hater@snu.ac.kr</a></span>
+  <span>Last updated Oct. 2026 · layout after <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a></span>
+</footer>
+</main>
+
+<script>
+(() => {
+  const cv = document.getElementById("fmac");
+  const ctx = cv.getContext("2d");
+  const C = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ETCH_SEC = 7;
+  let W, H, t0 = performance.now(), photons = [], carriers = [];
+
+  function size() {
+    const dpr = window.devicePixelRatio || 1;
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  addEventListener("resize", size); size();
+  cv.addEventListener("click", () => { t0 = performance.now(); carriers = []; if (reduce) draw(performance.now()); });
+
+  function draw(now) {
+    const top = H * 0.42, bot = H - 18, cx = W / 2;
+    const gw = Math.min(150, W * 0.22), gh = 11, gateY = top + (bot - top) * 0.62;
+    const padW = Math.min(120, W * 0.17), gap = Math.max(26, W * 0.05);
+    const maxDepth = (bot - top) * 0.45;
+    const p = reduce ? 0.85 : Math.min(1, (now - t0) / 1000 / ETCH_SEC);
+    const depth = maxDepth * (1 - Math.pow(1 - p, 2));
+    const x0 = cx - gw / 2, x1 = cx + gw / 2;
+    ctx.clearRect(0, 0, W, H);
+
+    if (!reduce && Math.random() < 0.6) photons.push({ x: Math.random() * W, y: -10, v: 2 + Math.random() * 1.6 });
+    ctx.strokeStyle = C("--uv"); ctx.lineWidth = 1.4;
+    photons = photons.filter(ph => {
+      ph.y += ph.v;
+      const over = ph.x > x0 && ph.x < x1;
+      const surf = over ? top + depth : top;
+      if (ph.y > surf) { if (over && p < 1 && Math.random() < .55) carriers.push({ x: ph.x, y: surf + 4, life: 1 }); return false; }
+      ctx.globalAlpha = .5;
+      ctx.beginPath(); ctx.moveTo(ph.x, ph.y - 9);
+      for (let k = 0; k < 4; k++) ctx.lineTo(ph.x + (k % 2 ? 2.5 : -2.5), ph.y - 9 + (k + 1) * 2.4);
+      ctx.stroke();
+      return true;
+    });
+    ctx.globalAlpha = 1;
+
+    const r = Math.min(10, depth);
+    ctx.fillStyle = C("--ga"); ctx.strokeStyle = C("--ga-edge"); ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.moveTo(0, top); ctx.lineTo(x0, top);
+    ctx.lineTo(x0, top + depth - r); ctx.quadraticCurveTo(x0, top + depth, x0 + r, top + depth);
+    ctx.lineTo(x1 - r, top + depth); ctx.quadraticCurveTo(x1, top + depth, x1, top + depth - r);
+    ctx.lineTo(x1, top); ctx.lineTo(W, top); ctx.lineTo(W, bot); ctx.lineTo(0, bot); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = C("--pt"); ctx.fillRect(x0, gateY, gw, gh);
+    ctx.fillStyle = C("--ti");
+    ctx.fillRect(x0 - gap - padW, top - 9, padW, 9);
+    ctx.fillRect(x1 + gap, top - 9, padW, 9);
+
+    carriers = carriers.filter(c => {
+      c.life -= .02;
+      const hy = c.y - (1 - c.life) * 6, ey = c.y + (1 - c.life) * (gateY - c.y);
+      ctx.globalAlpha = Math.max(0, c.life);
+      ctx.fillStyle = C("--hole"); ctx.beginPath(); ctx.arc(c.x - 3, hy, 2.6, 0, 7); ctx.fill();
+      ctx.fillStyle = C("--elec"); ctx.beginPath(); ctx.arc(c.x + 3, ey, 2.6, 0, 7); ctx.fill();
+      return c.life > 0;
+    });
+    ctx.globalAlpha = 1;
+
+    ctx.fillStyle = "#7d8696"; ctx.font = "12px Lato, Verdana, sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("Ti", x0 - gap - padW / 2, top - 15);
+    ctx.fillText("Ti", x1 + gap + padW / 2, top - 15);
+    ctx.fillText("Pt (buried gate)", cx, gateY + gh + 15);
+    ctx.fillText("recess " + Math.round(p * 100) + "%", cx, top - 15);
+    ctx.textAlign = "left"; ctx.fillText("β-Ga₂O₃", 12, bot - 8);
+    ctx.textAlign = "right";
+    ctx.fillStyle = C("--hole"); ctx.fillText("● h⁺", W - 52, 18);
+    ctx.fillStyle = C("--elec"); ctx.fillText("● e⁻", W - 12, 18);
+
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
