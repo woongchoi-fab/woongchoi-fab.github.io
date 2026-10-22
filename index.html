@@ -68,6 +68,29 @@ ul.tight li { margin: 3px 0; }
 .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .thumb:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(30, 50, 90, .12); }
 
+/* news cards */
+.ngrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.ncard { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; color: inherit; transition: transform .2s ease, box-shadow .2s ease; }
+a.ncard:hover { color: inherit; transform: translateY(-3px); box-shadow: 0 10px 24px rgba(30, 50, 90, .12); }
+.ncard-img { aspect-ratio: 4 / 3; background: #eef1f6; overflow: hidden; }
+.ncard-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; transition: transform .35s ease; }
+a.ncard:hover .ncard-img img { transform: scale(1.04); }
+.ncard-award { height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #eef5ff 0%, #f6f3ff 100%); }
+.ncard-award span { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #6b5fd6; }
+.ncard-body { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px 14px; }
+.ncard-date { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ncard-title { font-weight: 700; color: var(--head); line-height: 1.35; }
+.ncard-sub { font-size: 13px; color: var(--muted); line-height: 1.45; }
+details.more > .ngrid { margin-top: 12px; }
+/* email popover */
+.mail-wrap { position: relative; display: inline-block; }
+.mail-pop { position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%); z-index: 10; display: none; align-items: center; gap: 8px; padding: 8px 8px 8px 14px; background: #fff; border: 1px solid #d6dce8; border-radius: 12px; box-shadow: 0 10px 28px rgba(30, 50, 90, .16); white-space: nowrap; font-size: 13.5px; color: var(--head); }
+.mail-pop.open { display: inline-flex; }
+.mail-pop button { font: inherit; font-size: 12.5px; font-weight: 700; padding: 4px 12px; border-radius: 8px; border: 0; background: var(--link); color: #fff; cursor: pointer; }
+.mail-pop button.done { background: #15803d; }
+.mail-pop a { font-size: 12.5px; padding: 0; border: 0; background: none; margin: 0; }
+.mail-pop a:hover { background: none; color: var(--hover); }
+
 /* papers */
 .paper { padding: 14px 18px; margin: 0 -18px; border-radius: 14px; }
 .paper.first { background: linear-gradient(135deg, #eef5ff 0%, #f6f3ff 100%); }
@@ -127,7 +150,8 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
   .intro .photo-wrap { order: -1; width: 58%; margin: 0 auto; }
   .name { font-size: 28px; }
   .paper { margin: 0 -10px; padding: 12px 10px; }
-  .news li { grid-template-columns: 1fr; gap: 0; }
+  .ngrid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ncard-sub { display: none; }
   .areas { grid-template-columns: 1fr; }
   .paper { grid-template-columns: 1fr; gap: 10px; }
   .thumb { height: 150px; }
@@ -150,10 +174,10 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
     I received my B.S. in Chemical and Biological Engineering from Korea University.</p>
     <p>My research develops damage-free, plasma-free processes for semiconductor fabrication: catalyst- and light-driven wet etching of ultrawide-bandgap β-Ga<sub>2</sub>O<sub>3</sub> for transistors and photodetectors, and photo-assisted wet cleaning of High-NA EUV photomasks.</p>
     <p class="btn-links">
-      <a href="mailto:52_hater@snu.ac.kr">Email</a>
+      <span class="mail-wrap"><a href="mailto:52_hater@snu.ac.kr" id="mail-btn">Email</a>
+        <span class="mail-pop" id="mail-pop" role="dialog" aria-label="Email address">52_hater@snu.ac.kr <button type="button" id="mail-copy">Copy</button></span></span>
       <a href="CV_Woong_Choi.pdf">CV</a>
-      <a href="https://scholar.google.com/citations?user=3Df4Lg4AAAAJ&amp;hl=en">Scholar</a>
-      <a href="https://github.com/woongchoi-fab">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=3Df4Lg4AAAAJ&amp;hl=en">Google Scholar</a>
       <a href="https://www.linkedin.com/in/woong-choi-583726243">LinkedIn</a>
     </p>
   </div>
@@ -191,23 +215,56 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
 </div>
 
 <h2>Recent News</h2>
-<ul class="news">
-  <li><span class="when">Jul. 2026</span><span class="what"><b>Poster at NANO KOREA 2026</b>, Ilsan — <i>Achieving E-Mode β-Ga<sub>2</sub>O<sub>3</sub> MESFETs with Self-Aligned Gate-Recess Structure by Forward Metal-Assisted Chemical Etching</i></span></li>
-  <li><span class="when">Apr. 2026</span><span class="what"><b>Presented at the 2026 MRS Spring Meeting &amp; Exhibit</b>, Honolulu — forward metal-assisted chemical etching for self-aligned recess-gate β-Ga<sub>2</sub>O<sub>3</sub> MESFETs</span></li>
-  <li><span class="when">Jan. 2026</span><span class="what"><b>Presented at the 33rd Korean Conference on Semiconductors</b>, Jeongseon — photo-assisted wet cleaning of Sn particles on High-NA EUV masks</span></li>
-  <li><span class="when">Sep. 2025</span><span class="what"><b>Presented at SPIE Photomask Technology + EUV Lithography 2025</b>, Monterey</span></li>
-  <li><span class="when">May 2025</span><span class="what"><b>Journal cover</b> — <i>Annealing-Free Ohmic Contact of β-Ga<sub>2</sub>O<sub>3</sub> via Nitrogen Plasma Treatment</i> was selected for the cover of <i>Journal of Materials Chemistry C</i></span></li>
-</ul>
-<details>
+<div class="ngrid">
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/nano-korea-2026-참석">
+    <div class="ncard-img"><img src="images/news_nk26.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Jul. 2026</span><span class="ncard-title">Poster at NANO KOREA 2026</span><span class="ncard-sub">Ilsan · E-mode β-Ga<sub>2</sub>O<sub>3</sub> MESFETs with a self-aligned gate recess by forward MAC etching</span></div>
+  </a>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/2026-mrs-spring-meeting-exhibit-참석">
+    <div class="ncard-img"><img src="images/news_mrs26.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Apr. 2026</span><span class="ncard-title">2026 MRS Spring Meeting</span><span class="ncard-sub">Honolulu · forward MAC etching for self-aligned recess-gate β-Ga<sub>2</sub>O<sub>3</sub> MESFETs</span></div>
+  </a>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/제-33회-한국반도체학술대회-참석">
+    <div class="ncard-img"><img src="images/news_kcs33.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Jan. 2026</span><span class="ncard-title">33rd Korean Conference on Semiconductors</span><span class="ncard-sub">Jeongseon · photo-assisted wet cleaning of Sn particles on High-NA EUV masks</span></div>
+  </a>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/spie-photomask-technology-extreme-ultraviolet-lithography-2025-참석">
+    <div class="ncard-img"><img src="images/news_spie25.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Sep. 2025</span><span class="ncard-title">SPIE Photomask Technology + EUV Lithography</span><span class="ncard-sub">Monterey · photo-assisted wet cleaning of tin contaminants on High-NA EUV masks</span></div>
+  </a>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/journal-of-materals-chemistry-c-저널-커버-선정">
+    <div class="ncard-img"><img src="images/news_jmcc25.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">May 2025</span><span class="ncard-title">Journal cover, J. Mater. Chem. C</span><span class="ncard-sub">Annealing-free Ohmic contact of β-Ga<sub>2</sub>O<sub>3</sub> via nitrogen plasma treatment</span></div>
+  </a>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/the-electrochemical-society-prime-2024-ecs-prime-참석">
+    <div class="ncard-img"><img src="images/news_prime24.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Oct. 2024</span><span class="ncard-title">Oral talk at ECS PRiME 2024</span><span class="ncard-sub">Honolulu · plane-selective MAC etching for Ohmic contact to β-Ga<sub>2</sub>O<sub>3</sub></span></div>
+  </a>
+</div>
+<details class="more">
   <summary>Earlier news</summary>
-  <ul class="news">
-    <li><span class="when">Oct. 2024</span><span class="what"><b>Oral presentation at ECS PRiME 2024</b>, Honolulu</span></li>
-    <li><span class="when">Apr. 2024</span><span class="what"><b>Oral presentation at the KIChE Spring Meeting 2024</b>, Jeju</span></li>
-    <li><span class="when">Nov. 2023</span><span class="what"><b>Presented at ICAE 2023</b>, the 7th International Conference on Advanced Electromaterials, Jeju</span></li>
-    <li><span class="when">Sep. 2023</span><span class="what"><b>Best Student Presentation Award</b>, 6th Korea Gallium Oxide Technology Workshop, Yeosu</span></li>
-    <li><span class="when">May 2023</span><span class="what"><b>Oral presentation at the 243rd ECS Meeting</b>, Boston</span></li>
-    <li><span class="when">Feb. 2023</span><span class="what"><b>Poster at the 30th Korean Conference on Semiconductors</b>, High1 Resort</span></li>
-  </ul>
+  <div class="ngrid">
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/2024-한국화학공학회-봄-총회-및-학술대회-참석">
+    <div class="ncard-img"><img src="images/news_kiche24.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Apr. 2024</span><span class="ncard-title">Oral talk at KIChE Spring Meeting 2024</span><span class="ncard-sub">Jeju · anti-ambipolar transistor via β-Ga<sub>2</sub>O<sub>3</sub>/WSe<sub>2</sub> heterostructure</span></div>
+  </a>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/the-7th-international-conference-on-advanced-electromaterials-icae-2023">
+    <div class="ncard-img"><img src="images/news_icae23.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Nov. 2023</span><span class="ncard-title">ICAE 2023</span><span class="ncard-sub">Jeju · 7th International Conference on Advanced Electromaterials</span></div>
+  </a>
+  <div class="ncard">
+    <div class="ncard-img"><div class="ncard-award"><span>Award</span></div></div>
+    <div class="ncard-body"><span class="ncard-date">Sep. 2023</span><span class="ncard-title">Best Student Presentation Award</span><span class="ncard-sub">6th Korea Gallium Oxide Technology Workshop, Yeosu</span></div>
+  </div>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/2023-ecs-spring-meeting-참석">
+    <div class="ncard-img"><img src="images/news_ecs23.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">May 2023</span><span class="ncard-title">Oral talk at the 243rd ECS Meeting</span><span class="ncard-sub">Boston · photo-enhanced inverse MAC etching of α-Ga<sub>2</sub>O<sub>3</sub></span></div>
+  </a>
+  <a class="ncard" href="https://www.cpclsnu.com/single-post/제-30회-한국-반도체-학술대회-참석">
+    <div class="ncard-img"><img src="images/news_kcs30.jpg" alt="" loading="lazy"></div>
+    <div class="ncard-body"><span class="ncard-date">Feb. 2023</span><span class="ncard-title">Poster at the 30th Korean Conference on Semiconductors</span><span class="ncard-sub">High1 Resort · inverse MAC etching of α-phase gallium oxide</span></div>
+  </a>
+  </div>
 </details>
 
 <h2>Publications</h2>
@@ -365,7 +422,7 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
   </div>
   <div class="sec-row">
     <div><span class="label c-slate">Software</span></div>
-    <div class="chips"><span>SRIM</span><span>L-Edit</span><span>AutoCAD</span></div>
+    <div class="chips"><span>SRIM</span><span>L-Edit</span><span>AutoCAD</span><span>3ds Max</span></div>
   </div>
 </div>
 <footer>
@@ -374,5 +431,20 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line);
 </footer>
 </main>
 
+<script>
+(() => {
+  const btn = document.getElementById("mail-btn"), pop = document.getElementById("mail-pop"), copy = document.getElementById("mail-copy");
+  const addr = "52_hater@snu.ac.kr";
+  btn.addEventListener("click", e => { e.preventDefault(); pop.classList.toggle("open"); });
+  document.addEventListener("click", e => { if (!e.target.closest(".mail-wrap")) pop.classList.remove("open"); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") pop.classList.remove("open"); });
+  copy.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(addr); }
+    catch (_) { const t = document.createElement("textarea"); t.value = addr; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+    copy.textContent = "Copied"; copy.classList.add("done");
+    setTimeout(() => { copy.textContent = "Copy"; copy.classList.remove("done"); }, 1600);
+  });
+})();
+</script>
 </body>
 </html>
